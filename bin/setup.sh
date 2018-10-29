@@ -7,7 +7,6 @@ error() {
 }
 
 [ "$(which unzip)" ] || error "ERROR: The package 'unzip' is not installed. Please install it and run the installation again."
-[ "$(which tar)" ] || error "ERROR: The package 'tar' is not installed. Please install it and run the installation again."
 [ "$(which wget)" ] || error "ERROR: The package 'wget' is not installed. Please install it and run the installation again."
 
 TARGET="$HOME/bin/fortressonesv"
@@ -31,6 +30,18 @@ mkdir -p "$TARGET"
 if [ ! -d "$TARGET" ]; then
   error "ERROR: Target directory failed to create."
 fi
+
+printf "Enter server name: "
+read -r HOSTNAME
+
+printf "Enter server admin information: "
+read -r SV_ADMININFO
+
+printf "Enter remote console password: "
+read -r RCON_PASSWORD
+
+printf "Enter admin password: "
+read -r ADMIN_PWD
 
 echo "Downloading MVDSV 0.32"
 wget -nv --show-progress https://s3-ap-southeast-2.amazonaws.com/qwtf/mvdsv.zip
@@ -64,6 +75,10 @@ cp qwprogs.dat "$TARGET/fortress"
 
 echo "Installing FortressOne Server default configs"
 unzip -qq master.zip
+sed -i "s|HOSTNAME|$HOSTNAME|g" server-configs-master/fortress/config.cfg
+sed -i "s|SV_ADMININFO|$SV_ADMININFO|g" server-configs-master/fortress/config.cfg
+sed -i "s|RCON_PASSWORD|$RCON_PASSWORD|g" server-configs-master/fortress/config.cfg
+sed -i "s|ADMIN_PWD|$ADMIN_PWD|g" server-configs-master/fortress/config.cfg
 cp -r server-configs-master/* "$TARGET"
 
 echo "FortressOne Server installed successfully"
