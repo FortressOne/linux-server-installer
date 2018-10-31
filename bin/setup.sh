@@ -51,7 +51,6 @@ mkdir id1/
 wget -nv --show-progress https://s3-ap-southeast-2.amazonaws.com/qwtf/paks/id1/pak0.pak -P id1/
 
 echo "Downloading FortressOne pak file"
-mkdir fortress/
 wget -nv --show-progress https://s3-ap-southeast-2.amazonaws.com/qwtf/paks/fortress/pak0.pak -P fortress/
 
 echo "Downloading FortressOne Server qwprogs.dat"
@@ -66,7 +65,7 @@ unzip -qq mvdsv.zip -d "$TARGET"
 echo "Installing Quake shareware pak file"
 cp -r id1/ "$TARGET"
 
-echo "Installing FortressOne pak file"
+echo "Installing FortressOne asset files"
 mkdir -p "$TARGET/fortress/"
 cp -r fortress/ "$TARGET"
 
