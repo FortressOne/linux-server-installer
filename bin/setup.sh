@@ -41,7 +41,7 @@ printf "Enter remote console password: "
 read -r RCON_PASSWORD
 
 printf "Enter admin password: "
-read -r ADMIN_PWD
+read -r ADMINPWD
 
 echo "Downloading MVDSV 0.32"
 wget -nv --show-progress https://s3-ap-southeast-2.amazonaws.com/qwtf/mvdsv.zip
@@ -78,7 +78,7 @@ unzip -qq master.zip
 sed -i "s|HOSTNAME|$HOSTNAME|g" server-configs-master/fortress/config.cfg
 sed -i "s|SV_ADMININFO|$SV_ADMININFO|g" server-configs-master/fortress/config.cfg
 sed -i "s|RCON_PASSWORD|$RCON_PASSWORD|g" server-configs-master/fortress/config.cfg
-sed -i "s|ADMIN_PWD|$ADMIN_PWD|g" server-configs-master/fortress/config.cfg
+sed -i "s|ADMINPWD|$ADMINPWD|g" server-configs-master/fortress/config.cfg
 cp -r server-configs-master/* "$TARGET"
 
 echo "FortressOne Server installed successfully"
