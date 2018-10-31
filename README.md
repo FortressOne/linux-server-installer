@@ -1,10 +1,27 @@
-# FortressOne Linux Server Intaller
+# FortressOne Linux Installer
 
-## Todo
-- Download MVDSV
-- Download Quake Shareware pak file
-- Download FortressOne pak file
-- Download FortressOne qwprogs.dat
-- Download Maps
-- Download FortressOne server configs
-- Create systemd service
+Currently tested on Ubuntu 18.04. Doesn't work on your system? [Raise an issue](https://github.com/FortressOne/linux-installer/issues/new).
+
+## Installation
+
+Download [FortressOne](https://github.com/FortressOne/linux-installer/releases/latest)
+
+```bash
+$ sh fortressone-0.2.1.run
+```
+
+
+## Development
+
+### Dependencies: 
+
+Requires [Makeself](https://makeself.io/) available in PATH.
+
+On Ubunutu: `sudo apt install makeself`
+
+
+### Build:
+
+```bash
+$ sh build.sh
+```
