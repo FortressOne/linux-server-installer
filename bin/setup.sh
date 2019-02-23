@@ -57,7 +57,10 @@ echo "Downloading FortressOne Server qwprogs.dat"
 wget -nv --show-progress https://github.com/FortressOne/server-qwprogs/releases/download/v0.1.0/qwprogs.dat
 
 echo "Downloading FortressOne Server default configs"
-wget -nv --show-progress https://github.com/FortressOne/server-configs/archive/master.zip
+wget -nv --show-progress https://github.com/FortressOne/server-configs/archive/master.zip -O configs.zip
+
+echo "Downloading FortressOne map repo"
+wget -nv --show-progress https://github.com/FortressOne/map-repo/archive/master.zip -O maps.zip
 
 echo "Installing MVDSV 0.32"
 unzip -qq mvdsv.zip -d "$TARGET"
@@ -73,11 +76,15 @@ echo "Installing FortressOne Server qwprogs.dat"
 cp qwprogs.dat "$TARGET/fortress"
 
 echo "Installing FortressOne Server default configs"
-unzip -qq master.zip
+unzip -qq configs.zip
 sed -i "s|HOSTNAME|$HOSTNAME|g" server-configs-master/fortress/config.cfg
 sed -i "s|SV_ADMININFO|$SV_ADMININFO|g" server-configs-master/fortress/config.cfg
 sed -i "s|RCON_PASSWORD|$RCON_PASSWORD|g" server-configs-master/fortress/config.cfg
 sed -i "s|ADMINPWD|$ADMINPWD|g" server-configs-master/fortress/config.cfg
 cp -r server-configs-master/* "$TARGET"
+
+echo "Installing maps"
+unzip -qq maps.zip
+cp -r map-repo-master/* "$TARGET/fortress"
 
 echo "FortressOne Server installed successfully"
